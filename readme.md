@@ -8,8 +8,6 @@
     * `composer install`
 * Créer une base de donnée et importer le fichier sql
 * Dupliquer le fichier .env et nommer .env.local et modifier la configuration
-* Lancer la commande suivante:
-    * `composer install`
 * Dans le terminal, se place dans le dossier /public et lancer un 
     * `php -S localhost:8080`
 
