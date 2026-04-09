@@ -60,7 +60,29 @@ class PollRepository
         );
     }
     
-    // TODO : Ajouter une méthode create(Poll $poll) pour insérer un nouveau sondage en base de données
+    public function create(Poll $poll): Poll
+    {
+        $stmt = Mysql::getInstance()->getPdo()->prepare('INSERT INTO poll (title, description, user_id, category_id) VALUES (?, ?, ?, ?)');
+        $stmt->execute([
+            $poll->getTitle(),
+            $poll->getDescription(),
+            $poll->getUserId(),
+            $poll->getCategoryId()
+        ]);
+        $poll->setId(intval(Mysql::getInstance()->getPdo()->lastInsertId()));
+        return $poll;
+    }
 
-
+    public function update(Poll $poll): bool
+    {
+        $stmt = Mysql::getInstance()->getPdo()->prepare('UPDATE poll SET title = ?, description = ?, category_id = ? WHERE id = ? AND user_id = ?');
+        return $stmt->execute([
+            $poll->getTitle(),
+            $poll->getDescription(),
+            $poll->getCategoryId(),
+            $poll->getId(),
+            $poll->getUserId()
+        ]);
+    }
 }
+

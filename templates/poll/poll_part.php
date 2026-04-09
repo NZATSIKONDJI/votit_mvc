@@ -1,12 +1,13 @@
 <div class="col-md-4 my-2 d-flex">
     <div class="card w-100">
         <div class="card-header">
-            <img width="40" src="/assets/images/icon-arrow.png" alt="icone flèche haut"> TODO
+            <img width="40" src="/assets/images/icon-arrow.png" alt="icone flèche haut"> <?= $poll->getCategory() ? htmlspecialchars($poll->getCategory()->getName()) : 'Sans catégorie' ?>
         </div>
         <div class="card-body d-flex flex-column">
-            <h3 class="card-title">TODO</h3>
+            <h3 class="card-title"><?= htmlspecialchars($poll->getTitle()) ?></h3>
+            <p class="card-text"><?= nl2br(htmlspecialchars($poll->getDescription())) ?></p>
             <div class="mt-auto">
-                <a href="/poll/?id=TODO" class="btn btn-primary">Voir le sondage</a>
+                <a href="/poll/?id=<?= intval($poll->getId()) ?>" class="btn btn-primary">Voir le sondage</a>
             </div>
         </div>
     </div>

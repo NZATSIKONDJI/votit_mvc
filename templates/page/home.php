@@ -16,8 +16,15 @@
 <div class="row text-center">
     <h2>Les derniers sondages :</h2>
     <div class="row">
-        <?php include __DIR__ . '/../poll/poll_part.php';
-        ?>
+        <?php if (!empty($polls)) : ?>
+            <?php foreach ($polls as $poll) : ?>
+                <?php include __DIR__ . '/../poll/poll_part.php'; ?>
+            <?php endforeach; ?>
+        <?php else : ?>
+            <div class="col-12">
+                <p>Aucun sondage disponible pour le moment.</p>
+            </div>
+        <?php endif; ?>
     </div>
 </div>
 

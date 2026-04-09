@@ -2,7 +2,10 @@
     $mainMenu = [
         '/' => 'Accueil',
         '/poll/list' => 'Listes des sondages',
+        '/categories' => 'Catégories',
         '/poll/create' => 'Créer un sondage',
+        '/legal' => 'Mentions légales',
+        '/about' => 'A propos'
     ];
 ?>
 

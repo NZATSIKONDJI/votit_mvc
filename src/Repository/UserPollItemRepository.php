@@ -46,4 +46,16 @@ class UserPollItemRepository
         ');
         $stmt->execute([$user_id, $poll_id]);
     }
+
+    public function getUserVote(int $user_id, int $poll_id): ?int
+    {
+        $stmt = Mysql::getInstance()->getPdo()->prepare('
+            SELECT pi.id FROM user_poll_item upi
+            INNER JOIN poll_item pi ON upi.poll_item_id = pi.id
+            WHERE upi.user_id = ? AND pi.poll_id = ?
+        ');
+        $stmt->execute([$user_id, $poll_id]);
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $data ? intval($data['id']) : null;
+    }
 }
